@@ -97,8 +97,19 @@ svi_proracuni <- svi_proracuni %>% mutate(
 # jedinice je sada moguce spajati prema zupanija_id i maticni_broj atributima
 svi_proracuni <- svi_proracuni %>% rename(maticni_broj = sifra_grop)
 
+# pretvori maticni broj u string od 5 znakova s vodecim nulama
+svi_proracuni <- svi_proracuni %>% mutate(
+    maticni_broj = str_pad(maticni_broj, width = 5, side = 'left', pad = '0')
+)
+
+# pretvori proracunske iznose u numeric type
+svi_proracuni$ukupni_proracun_za_godinu <- as.numeric(svi_proracuni$ukupni_proracun_za_godinu) 
+svi_proracuni$ukupni_proracun_umanjen_za_decentralizaciju_vlastite_i_namjenske_prihode_te_primitke_od_zaduzivanja <- as.numeric(svi_proracuni$ukupni_proracun_umanjen_za_decentralizaciju_vlastite_i_namjenske_prihode_te_primitke_od_zaduzivanja) 
+
 # provjeri
 View(svi_proracuni)
 
 # spremi kao RDS
 svi_proracuni %>% saveRDS('export/proracuni_jls.RDS')
+# spremi kao CSV
+svi_proracuni %>% write.csv2('export/proracuni_jls.CSV', fileEncoding = 'windows-1250')
