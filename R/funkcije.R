@@ -60,4 +60,17 @@ procitaj_proracune_za_godinu <- function(godina, prva_kolona = 2, broj_kolona, p
 }
 
 
-
+ucitaj_sifrant_gradova_i_opcina <- function(file_name = "data/custom_data/sifrant_gradovi_opcine.xlsx") {
+    # ucitaj sifrant gradova i opcina
+    sifrant_grop <- read.xlsx(file_name) %>% as_tibble()
+    # standardiziraj kolone
+    colnames(sifrant_grop) <- c(
+        'zupanija_id',
+        'zupanija',
+        'oznaka_grop',
+        'sifra_grop',
+        'naziv'
+    )
+    # vrati
+    sifrant_grop
+}

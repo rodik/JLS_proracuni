@@ -39,4 +39,4 @@ vignettes/*.pdf
 .Renviron
 
 # gitignore data
-/data/custom_data/
+# /data/custom_data/
