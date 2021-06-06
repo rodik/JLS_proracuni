@@ -24,7 +24,7 @@ svi_proracuni <- rbind(
 )
 
 # baci oko
-View(svi_proracuni)
+# View(svi_proracuni)s
 
 # ucitaj sifrant
 sifrant_grop <- ucitaj_sifrant_gradova_i_opcina()
@@ -96,3 +96,9 @@ svi_proracuni <- svi_proracuni %>% mutate(
 
 # jedinice je sada moguce spajati prema zupanija_id i maticni_broj atributima
 svi_proracuni <- svi_proracuni %>% rename(maticni_broj = sifra_grop)
+
+# provjeri
+View(svi_proracuni)
+
+# spremi kao RDS
+svi_proracuni %>% saveRDS('export/proracuni_jls.RDS')
